@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MyAPI documentation",
+    "description": "My API documentation with all specifications",
+    "version": "v0",
+    "contact": {
+      "name": "Pedro Santiago",
+      "email": "victor.lacsilva0102@gmail.com"
+    }
+  }
+}
