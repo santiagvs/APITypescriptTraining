@@ -10,7 +10,7 @@ export class Role {
   name: string
 
   @CreateDateColumn()
-  createdAt: Date
+  created_at: Date
 
   constructor() {
     if (!this.id) {
