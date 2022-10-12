@@ -6,7 +6,7 @@ import { ShowProfileUseCase } from './ShowProfileUseCase'
 export class ShowProfileController {
   async handle(request: Request, response: Response): Promise<Response> {
     const showProfileUseCase = container.resolve(ShowProfileUseCase)
-    const { user_id } = request.body
+    const user_id = request.user.id
     const user = await showProfileUseCase.execute({
       user_id,
     })
