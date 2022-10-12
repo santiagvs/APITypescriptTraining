@@ -3,11 +3,12 @@ import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { UpdateProfileUseCase } from './UpdateProfileUseCase'
 
-export class CreateUserController {
+export class UpdateProfileController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const createUserUseCase = container.resolve(UpdateProfileUseCase)
-    const { userId, name, email, password, oldPassword } = request.body
-    const user = await createUserUseCase.execute({
+    const updateProfileUseCase = container.resolve(UpdateProfileUseCase)
+    const userId = request.user.id
+    const { name, email, password, oldPassword } = request.body
+    const user = await updateProfileUseCase.execute({
       userId,
       name,
       email,
