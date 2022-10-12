@@ -238,6 +238,96 @@
           }
         }
       }
+    },
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary":"Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "isAdmin": {
+                    "type": "boolean"
+                  },
+                  "roleId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "boolean"
+                    },
+                    "roleId": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "ca01280f-f9ad-49e9-aace-a38e595596d0",
+                    "name": "Santos",
+                    "email": "sants@email.com",
+                    "isAdmin": false,
+                    "role": {
+                        "id": "27ee4da5-11f2-421c-a75e-539d8847c1be",
+                        "name": "Meme",
+                        "created_at": "2022-10-10T17:47:33.000Z"
+                    },
+                    "created_at": "2022-10-12T17:49:40.000Z",
+                    "avatar_url": null
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email address is already in use."
+          },
+          "401": {
+            "description": "Invalid authentication token."
+          },
+          "404": {
+            "description": "Role not found."
+          }
+        }
+      }
     }
   }
 }
