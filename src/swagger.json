@@ -327,6 +327,83 @@
             "description": "Role not found."
           }
         }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary":"List all users",
+        "description": "Returns all users paginated",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Number of pages",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "examples": "page=1"
+            },
+            "style": "label"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of registers per page",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "examples": "limit=15"
+            },
+            "style": "label"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "per_page": 15,
+                "total": 2,
+                "current_page": 1,
+                "data": [
+                  {
+                    "id": "15a8c5bf-88d9-4163-8ea6-51ce17fbbbb6",
+                    "name": "User Admin",
+                    "email": "a@a.com",
+                    "password": "$2a$10$I2zsndUNdzEIn2LCaObkB.FMp353Yl0Mun8RwQyAxtaBtHYPF2AF2",
+                    "isAdmin": true,
+                    "avatar": null,
+                    "created_at": "2022-10-10T17:46:38.000Z",
+                    "role": {
+                        "id": "38dd6940-e6bc-4402-a979-66e39162c892",
+                        "name": "T.I.",
+                        "created_at": "2022-10-10T17:46:38.000Z"
+                    }
+                  },
+                  {
+                    "id": "ad1f08b5-7aab-4f79-ad5d-e0b83cc184a8",
+                    "name": "Pedro Santiago",
+                    "email": "pedro@abc.com",
+                    "password": "$2a$10$XtZOmkMAd5gv3tBZsvLStOiOt174MRU1MqGruLAATrai1nlGdCWzS",
+                    "isAdmin": true,
+                    "avatar": null,
+                    "created_at": "2022-10-10T17:47:48.000Z",
+                    "role": {
+                        "id": "27ee4da5-11f2-421c-a75e-539d8847c1be",
+                        "name": "Player",
+                        "created_at": "2022-10-10T17:47:33.000Z"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Invalid authentication token."
+          }
+        }
       }
     }
   }
