@@ -42,7 +42,7 @@ export class CreateLoginUseCase {
       expiresIn: jwtConfig.jwt.expiresIn,
     })
 
-    const expires = new Date(Date.now() + jwtConfig.refreshToken.expiresIn)
+    const expires = new Date(Date.now() + jwtConfig.refreshToken.duration)
     const refreshToken = sign({}, jwtConfig.refreshToken.secret, {
       subject: user.id,
       expiresIn: jwtConfig.refreshToken.expiresIn,
