@@ -2,6 +2,7 @@ import { IRefreshTokenRespository } from '@users/repositories/IRefreshTokenRepos
 import { IUsersRepository } from '@users/repositories/IUsersRepository'
 import { RefreshTokenRespository } from '@users/repositories/RefreshTokenRepository'
 import { UsersRepository } from '@users/repositories/UsersRepository'
+import { CreateAccessAndRefreshTokenController } from '@users/useCases/createAccessAndRefreshToken/CreateAccessAndRefreshTokenController'
 import { CreateLoginController } from '@users/useCases/createLogin/CreateLoginController'
 import { CreateUserController } from '@users/useCases/createUser/CreateUserController'
 import { ListUsersController } from '@users/useCases/listUsers/ListUsersController'
@@ -24,4 +25,8 @@ container.registerSingleton('UpdateProfileController', UpdateProfileController)
 container.registerSingleton<IRefreshTokenRespository>(
   'RefreshTokenRepository',
   RefreshTokenRespository,
+)
+container.registerSingleton(
+  'CreateAccessAndRefreshTokenController',
+  CreateAccessAndRefreshTokenController,
 )

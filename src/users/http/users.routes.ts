@@ -10,6 +10,8 @@ import { ShowProfileController } from '@users/useCases/showProfile/ShowProfileCo
 import { UpdateProfileController } from '@users/useCases/updateProfile/UpdateProfileController'
 import multer from 'multer'
 import uploadConfig from '@config/upload'
+import { CreateAccessAndRefreshTokenController } from '@users/useCases/createAccessAndRefreshToken/CreateAccessAndRefreshTokenController'
+import { addUserInfoToRequest } from './middlewares/addUserInfoToRequest'
 
 const usersRouter = Router()
 const createUserController = container.resolve(CreateUserController)
@@ -18,6 +20,10 @@ const createLoginController = container.resolve(CreateLoginController)
 const updateAvatarController = container.resolve(UpdateAvatarController)
 const showProfileController = container.resolve(ShowProfileController)
 const updateProfileController = container.resolve(UpdateProfileController)
+const createAccessAndRefreshTokenController = container.resolve(
+  CreateAccessAndRefreshTokenController,
+)
+
 const upload = multer(uploadConfig)
 
 usersRouter.post(
@@ -61,6 +67,19 @@ usersRouter.post(
   }),
   (request, response) => {
     return createLoginController.handle(request, response)
+  },
+)
+
+usersRouter.post(
+  '/refresh_token',
+  addUserInfoToRequest,
+  celebrate({
+    [Segments.BODY]: {
+      refresh_token: Joi.string().required(),
+    },
+  }),
+  (request, response) => {
+    return createAccessAndRefreshTokenController.handle(request, response)
   },
 )
 
